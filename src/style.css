@@ -1,0 +1,301 @@
+:root {
+  --header-height: 50px;
+  --footer-height: 30px;
+  --main-height: calc(100vh - var(--header-height) - var(--footer-height));
+  --sidebar-width: 200px;
+
+  /* COLORS */
+  --bg-main: #1b1b1b;
+  --bg-header: #212121;
+  --bg-footer: #212121;
+  --bg-sidebar: rgb(52, 52, 52);
+  --blue: rgb(82, 139, 255);
+  --yellow: rgb(209, 154, 102);
+  --green: rgb(152, 195, 121);
+  --red: rgb(190, 80, 70);
+  --text-color: rgb(205, 205, 205);
+  --link-color: var(--blue);
+  --link-hover-color: rgb(94, 158, 255);
+  --border-color: #858585;
+}
+
+[data-theme="light"] {
+  --bg-main: rgb(226, 226, 226);
+  --bg-header: rgb(212, 212, 212);
+  --bg-footer: rgb(212, 212, 212);
+  --bg-sidebar: rgb(206, 203, 203);
+  --blue: rgb(82, 139, 255);
+  --yellow: rgb(209, 154, 102);
+  --green: rgb(152, 195, 121);
+  --red: rgb(190, 80, 70);
+  --text-color: #1b1b1b;
+  --link-color: rgb(255 153 51/1);
+  --link-hover-color: rgb(255 204 102/1);
+  --border-color: rgb(173, 173, 173);
+}
+
+[data-theme="dark"] {
+  --bg-main: #1b1b1b;
+  --bg-header: #212121;
+  --bg-footer: #212121;
+  --bg-sidebar: rgb(52, 52, 52);
+  --blue: rgb(82, 139, 255);
+  --yellow: rgb(209, 154, 102);
+  --green: rgb(152, 195, 121);
+  --red: rgb(190, 80, 70);
+  --text-color: rgb(205, 205, 205);
+  --link-color: var(--blue);
+  --link-hover-color: rgb(94, 158, 255);
+  --border-color: #858585;
+}
+
+
+@font-face {
+  font-family: Overpass;
+  src: url('/style/fonts/overpass-300.woff2');
+}
+
+@font-face {
+  font-family: Overpass-Bold;
+  src: url('/style/fonts/overpass-600.woff2');
+}
+
+@font-face {
+  font-family: Fira;
+  src: url('/style/fonts/fira-mono-400.woff2');
+}
+
+@font-face {
+  font-family: ZillaSlab;
+  src: url('/style/fonts/ZillaSlab-Light.woff2');
+}
+
+/* scrollbar */
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  box-sizing: border-box;
+  transition: all .5s;
+}
+
+html {
+  font-size: 16px;
+  line-height: 1.5rem;
+}
+
+body {
+  margin: 0;
+  font-family: 'Overpass', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  color: var(--text-color);
+  background-color: var(--bg-main);
+}
+
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+  font-family: Overpass;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 3rem
+}
+
+h2 {
+  font-size: 1.75rem;
+  margin-bottom: 2.625rem
+}
+
+h3 {
+  font-size: 1.5rem;
+  margin-bottom: 2.25rem
+}
+
+h4 {
+  font-size: 1.25rem;
+  margin-bottom: 1.874rem
+}
+
+h5 {
+  font-size: 1.125rem;
+  margin-bottom: 1.6875rem
+}
+
+a {
+  text-decoration: none;
+  color: var(--link-color);
+}
+
+a:hover {
+  /* color: var(--link-hover-color); */
+  filter: brightness(1.25);
+}
+
+details>summary {
+  list-style: none;
+}
+
+details>summary::-webkit-details-marker {
+  display: none;
+}
+
+nav ul {
+  padding-left: 0;
+}
+
+li {
+  list-style-type: none;
+}
+
+/**
+ *
+ * FORM 
+ *
+ */
+fieldset {
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+}
+
+fieldset legend {
+  font-size: 1.2rem;
+  ;
+}
+
+form ul {
+  margin: 0 auto;
+  max-width: 600px;
+  padding: 0 1rem 1rem;
+}
+
+form ul li {
+  padding: 0;
+  display: block;
+  list-style: none;
+  margin: 1rem 0 0 0;
+}
+
+form ul label {
+  font-size: 0.9rem;
+  margin: 0 0 3px 0;
+  padding: 0px;
+  display: block;
+  color: var(--text-color);
+  /* font-weight: bold; */
+}
+
+form ul input[type='text'],
+form ul input[type='date'],
+form ul input[type='datetime'],
+form ul input[type='number'],
+form ul input[type='search'],
+form ul input[type='time'],
+form ul input[type='url'],
+form ul input[type='email'],
+textarea,
+select {
+  background-color: var(--bg-sidebar);
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  border-radius: 0.3rem;
+  padding: 7px;
+  margin: 0px;
+  outline: none;
+}
+
+form ul input[type='text']::placeholder,
+form ul input[type='date']::placeholder,
+form ul input[type='datetime']::placeholder,
+form ul input[type='number']::placeholder,
+form ul input[type='search']::placeholder,
+form ul input[type='time']::placeholder,
+form ul input[type='url']::placeholder,
+form ul input[type='email']::placeholder,
+textarea::placeholder {
+  opacity: 0.5;
+  color: var(--text-color);
+}
+
+form ul input[type='text']:focus,
+form ul input[type='date']:focus,
+form ul input[type='datetime']:focus,
+form ul input[type='number']:focus,
+form ul input[type='search']:focus,
+form ul input[type='time']:focus,
+form ul input[type='url']:focus,
+form ul input[type='email']:focus,
+form ul textarea:focus,
+form ul select:focus {
+  border: 1px solid var(--blue);
+}
+
+form ul .third {
+  width: calc(100% / 3 - 3px);
+}
+
+form ul .half {
+  width: calc(100% / 2 - 2px);
+}
+
+form ul .quater {
+  width: calc(100% / 4 - 4px);
+}
+
+form ul .inline {
+  display: inline-flex;
+}
+
+form ul .inline input[type='checkbox'] {
+  margin: 2px 6px 6px;
+}
+
+
+form ul .full {
+  width: 100%;
+}
+
+form ul textarea {
+  width: 100%;
+  height: 100px;
+}
+
+form ul input[type='submit'],
+form ul input[type='button'] {
+  background: var(--blue);
+  padding: 8px 15px 8px 15px;
+  border: 1px solid var(--border-color);
+  color: var(--bg-sidebar);
+  border-radius: 0.3rem;
+  cursor: pointer;
+}
+
+form ul input[type='submit'].cancel,
+form ul input[type='button'].cancel {
+  background: var(--yellow);
+}
+
+form ul input[type='submit']:hover,
+form ul input[type='button']:hover {
+  filter: brightness(1.25);
+  box-shadow: none;
+}
+
+form label.required:after {
+  content: '*';
+  margin-left: .05rem;
+  color: var(--red);
+}
