@@ -13,3 +13,7 @@ still learning Svelte stuff...
 - responsive via matchMedia object (`+layout.svelte`)
 - dark & light Theme (incl Code-Highlighting)
 - ...
+
+## used libraries
+- https://github.com/andrelmlins/svelte-grid-responsive
+- https://github.com/flekschas/svelte-simple-modal

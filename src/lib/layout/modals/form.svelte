@@ -1,18 +1,11 @@
 <script>
-	  // import { browser } from '$app/environment';
-		// import Modal from 'svelte-simple-modal';
-	  // import Content from './Content.svelte';
+  export let message = 'Hi';
 </script>
-<!-- {#if browser}
-  <Modal>
-    <Content />
-  </Modal>
-{/if} -->
-<div class="center">
-	<h2>a wonderfull Startpage :-)</h2>
+
+
 
 	<fieldset>
-		<legend>Form</legend>
+		<legend>{message}</legend>
 		<form>
 			<ul>
 				<li>
@@ -77,12 +70,3 @@
 			</ul>
 		</form>
 	</fieldset>
-</div>
-
-<style>
-	.center {
-		width: max-content;
-		margin-inline: auto;
-	}
-
-</style>
