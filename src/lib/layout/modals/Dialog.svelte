@@ -1,27 +1,36 @@
 <script lang="ts">
+	export let title = 'title';
+	export let text = 'text';
+	import { getContext } from 'svelte';
+	export let onCancel = () => {};
+	export let onOkay = () => {};
 
-	export let message:string = 'dd'
+	const { close } = getContext('simple-modal');
 
-	import { openDialogModal } from '$lib/functions/stores';
-	function returnCancel() {
-		openDialogModal.update((n) => false);
+	// let onChange = () => {};
+
+	function _onCancel() {
+		onCancel();
+		close();
 	}
-	function returnOkay() {
-		openDialogModal.update((n) => false);
+
+	function _onOkay() {
+		onOkay();
+		close();
 	}
 
-</script> 
+	// $: onChange(value);
+</script>
 
 <fieldset>
-	<legend>{message}</legend>
-	<form> 
+	<legend>{title}</legend>
+	<div>{text}</div>
+	<form>
 		<ul>
 			<li>
-				<input type="submit" value="Okay" on:click|preventDefault={returnOkay} />
-				<input type="submit" value="Cancel" class="cancel" on:click|preventDefault={returnCancel} />
+				<input type="submit"  on:click|preventDefault={_onOkay} value="Okay" />
+				<input type="submit"  on:click|preventDefault={_onCancel} value="Cancel" class="cancel" /> 
 			</li>
 		</ul>
 	</form>
 </fieldset>
- 
-

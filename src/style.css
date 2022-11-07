@@ -181,7 +181,7 @@ fieldset {
 
 fieldset legend {
   font-size: 1.2rem;
-  ;
+    color: var(--text-color);
 }
 
 form ul {
@@ -207,6 +207,7 @@ form ul label {
 }
 
 form ul input[type='text'],
+form ul input[type='password'],
 form ul input[type='date'],
 form ul input[type='datetime'],
 form ul input[type='number'],
@@ -280,7 +281,7 @@ form ul textarea {
   width: 100%;
   height: 100px;
 }
-
+button,
 form ul input[type='submit'],
 form ul input[type='button'] {
   background: var(--blue);
@@ -290,12 +291,12 @@ form ul input[type='button'] {
   border-radius: 0.3rem;
   cursor: pointer;
 }
-
+button.cancel,
 form ul input[type='submit'].cancel,
 form ul input[type='button'].cancel {
   background: var(--yellow);
 }
-
+button:hover,
 form ul input[type='submit']:hover,
 form ul input[type='button']:hover {
   filter: brightness(1.25);

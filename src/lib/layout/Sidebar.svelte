@@ -4,62 +4,39 @@
 	// import { page } from '$app/stores';
 	import { fade } from 'svelte/transition';
 
-	// // modals
-	// import { openFormModal,openDialogModal } from '$lib/functions/stores';
-	// // FORM MODAL
-	// import Form from './modals/Form.svelte';
-	// let isopenFormModal: boolean;
-	// openFormModal.subscribe((value) => {
-	// 	isopenFormModal = value;
-	// });
-	// function toggleFormModal() {
-	// 	openFormModal.update((n) => !n);
-	// }
-	// // DIALOG MODAL
-	// import Dialog from './modals/Dialog.svelte';
-	// let isopenDialogModal: boolean;
-	// openDialogModal.subscribe((value) => {
-	// 	isopenDialogModal = value;
-	// });
-	// function toggleDialogModal() {
-	// 	openDialogModal.update((n) => !n);
-	// }
-
 	import Form from './modals/Form.svelte';
 	import Dialog from './modals/Dialog.svelte';
+	import CloseButton from './modals/CloseButton.svelte';
 	import { writable } from 'svelte/store';
-	import Modal from 'svelte-simple-modal';
+	import Modal, { bind } from 'svelte-simple-modal';
+
 	const modal = writable(null);
-	const showModal = () => modal.set(Form);
-	const showModalDialog = () => modal.set(Dialog);
+	const showForm = () => modal.set(bind(Form, { message: ""}));
+
+
+	const showDialog = () => modal.set(bind(Dialog, { title: 'Confirm', text: 'Delete row 3?',onCancel,onOkay }));
+ 	const onCancel = () => {
+		console.log('cancel')
+	};
+	const onOkay = () => {
+		console.log('okay')
+		};
 </script>
 
-<!-- {#if isopenFormModal}
-	<div transition:fade class="modal" on:click|self={toggleFormModal} on:keydown|self={toggleFormModal}>
-		<Form />
-	</div>
-{/if}
+<!-- 
+	styleWindow={{ backgroundColor: 'var(--bg-main); border: 1px solid var(--border-color);' }} 
+	closeButton={CloseButton}
+	-->
 
-
-
-{#if isopenDialogModal}
-<div transition:fade class="modal" on:click|self={toggleDialogModal} on:keydown|self={toggleDialogModal}>
-	<Dialog message={'test'} />
-	</div>
-{/if} -->
+<Modal show={$modal} styleWindow={{ backgroundColor: 'transparent', 'max-width':'max-content' }} />
 
 <nav>
 	<h2>Navigation</h2>
 	<ul>
-		<Modal show={$modal}><li><a href="/#" on:click={showModal}>Form</a></li></Modal>
-		<Modal show={$modal}><li><a href="/#" on:click={showModalDialog}>Dialog</a></li></Modal>
+		<li><a href="/#" on:click={showForm}>Form</a></li>
+		<li><a href="/#" on:click={showDialog}>Dialog</a></li>
 	</ul>
-
-	<!-- <ul>
-		<li><a href="/#" on:click={toggleDialogModal} on:keydown={toggleDialogModal}>Dialog</a></li>
-		<li><a href="/#" on:click={toggleFormModal} on:keydown={toggleFormModal}>Form</a></li>
-	</ul> -->
-
+ 
 	<h3>Catrgorie 1</h3>
 	<ul>
 		<li><a href="/#">Item</a></li>
