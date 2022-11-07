@@ -3,14 +3,10 @@
 		// import Modal from 'svelte-simple-modal';
 	  // import Content from './Content.svelte';
 </script>
-<!-- {#if browser}
-  <Modal>
-    <Content />
-  </Modal>
-{/if} -->
+<!-- {#if browser} <Modal> <Content /> </Modal>{/if} -->
 <div class="center">
 	<h2>a wonderfull Startpage :-)</h2>
-
+<!-- 
 	<fieldset>
 		<legend>Form</legend>
 		<form>
@@ -76,7 +72,7 @@
 				</li>
 			</ul>
 		</form>
-	</fieldset>
+	</fieldset> -->
 </div>
 
 <style>

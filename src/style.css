@@ -167,6 +167,7 @@ li {
  *
  */
 fieldset {
+  background-color: var(--bg-main);
   border: 1px solid var(--border-color);
   border-radius: 0.5rem;
 }

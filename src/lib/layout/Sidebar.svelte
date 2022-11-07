@@ -1,52 +1,59 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import { fly } from 'svelte/transition';
+	// import { onMount } from 'svelte';
+	// import { base } from '$app/paths';
+	// import { page } from '$app/stores';
+	import { fade } from 'svelte/transition';
 
-	import { base } from '$app/paths';
-	import { page } from '$app/stores';
-	//   import { writable } from 'svelte/store';
-	import { bind } from 'svelte-simple-modal';
-	// import { modal } from '../functions/stores.js';
-	// import Form from './modals/form.svelte';
-	// let opening = false;
-	// let opened = false;
-	// let closing = false;
-	// let closed = false;
+	// modals
+	import { openFormModal,openDialogModal } from '$lib/functions/stores';
 
-	// const showPopupWithProps = () => {
-	// 	modal.set(bind(Form, { message: "It's a customized popup!" }));
-	// };
 
-  import { writable } from 'svelte/store';
-  import Modal from 'svelte-simple-modal';
-  const modal = writable(null);
-	import Popup from './modals/form.svelte';
-	import Popup1 from './modals/form1.svelte';
-  // const showModal = () => modal.set(Popup);
+	// FORM MODAL
+	import Form from './modals/Form.svelte';
+	let isopenFormModal: boolean;
+	openFormModal.subscribe((value) => {
+		isopenFormModal = value;
+	});
+	function toggleFormModal() {
+		openFormModal.update((n) => !n);
+	}
 
-		const showModal = () => {
-		modal.set(bind(Popup, { message: "It's a customized 0!" }));
-	};
-
-			const showModal1 = () => {
-		modal.set(bind(Popup1, { message: "It's a customized 1!" }));
-	};
-
+	// DIALOG MODAL
+	import Dialog from './modals/Dialog.svelte';
+	let isopenDialogModal: boolean;
+	openDialogModal.subscribe((value) => {
+		isopenDialogModal = value;
+	});
+	function toggleDialogModal() {
+		openDialogModal.update((n) => !n);
+	}
+	 
 </script>
-<Modal show={$modal}></Modal>
 
+{#if isopenFormModal}
+	<div transition:fade class="modal" on:click|self={toggleFormModal} on:keydown|self={toggleFormModal}>
+		<Form />
+	</div>
+{/if}
+
+
+
+{#if isopenDialogModal}
+<div transition:fade class="modal" on:click|self={toggleDialogModal} on:keydown|self={toggleDialogModal}>
+	<Dialog />
+	</div>
+{/if}
+ 
 <nav>
 	<h2>Navigation</h2>
-	<!-- <button on:click={showPopupWithProps}>Show</button> -->
 
-  <button on:click={showModal}>Show modal</button>
-  <button on:click={showModal1}>Show modal</button>
+	<ul>
+		<li on:click={toggleDialogModal} on:keydown={toggleDialogModal}>Dialog</li>
+		<li on:click={toggleFormModal} on:keydown={toggleFormModal}>Form</li>
+	</ul>
 
 	<h3>Catrgorie 1</h3>
 	<ul>
-		<li><a href="/#">Item</a></li>
-		<li><a href="/#">Item</a></li>
-		<li><a href="/#">Item</a></li>
 		<li><a href="/#">Item</a></li>
 		<li><a href="/#">Item</a></li>
 	</ul>
@@ -62,6 +69,20 @@
 </nav>
 
 <style>
+	.modal {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100vw;
+		height: 100vh;
+		background: var(--bg-footer);
+		opacity: 0.95;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		z-index: 100;
+	}
 	nav {
 		flex-shrink: 0;
 		width: var(--sidebar-width);
