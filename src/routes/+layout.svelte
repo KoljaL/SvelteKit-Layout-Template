@@ -48,7 +48,9 @@
 		width: 100%;
 		display: flex;
 		flex-direction: row;
-		outline: 1px solid var(--border-color);
+		border: 1px solid var(--border-color);
+		border-radius: var(--page-radius);
+		/* max-height: var(--main-height); */
 	}
 
 	article{

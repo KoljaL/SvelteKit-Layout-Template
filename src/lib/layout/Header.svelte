@@ -92,7 +92,7 @@
 		display: none;
 	}
 
-	:global(.medium .toggleSidebar ) {
+	:global(.medium .toggleSidebar,.small .toggleSidebar ) {
 		display:inline!important;
 	}
 

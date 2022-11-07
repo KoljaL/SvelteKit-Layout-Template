@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { openFormModal } from '$lib/functions/stores';
-	function closeFormModal() {
-		openFormModal.update((n) => false);
-	}
+	// import { openFormModal } from '$lib/functions/stores';
+	// function closeFormModal() {
+	// 	openFormModal.update((n) => false);
+	// }
 </script>
 
 <fieldset>
@@ -69,7 +69,8 @@
 
 			<li>
 				<input type="submit" value="Submit" />
-				<input type="submit" value="Cancel" class="cancel" on:click|preventDefault={closeFormModal} />
+				<input type="submit" value="Cancel" class="cancel" />
+				<!-- <input type="submit" value="Cancel" class="cancel" on:click|preventDefault={closeFormModal} /> -->
 			</li>
 		</ul>
 	</form>

@@ -31,7 +31,7 @@
 	footer {
 		flex-shrink: 0;
 		height: var(--footer-height);
-		outline: 1px solid var(--border-color);
+		/* border-top: 1px solid var(--border-color); */
 		background-color: var(--bg-footer);
 		display: flex;
 		flex-direction: row;
