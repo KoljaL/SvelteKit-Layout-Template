@@ -4,10 +4,18 @@
 	import Logo from './svg/dbLogo.svelte';
 	import Logout from './svg/logout.svelte';
 	import Menu from './svg/menu.svelte';
+	import { confObj } from '$lib/functions/stores';
 
 	function toggleSidebar() {
 		document.body.classList.toggle('noSidebar');
 	}
+
+	function logout() {
+		$confObj.erase();
+		$confObj = $confObj;
+		window.localStorage.removeItem('ConfigHolder');
+	}
+	
 </script>
 
 <header>
@@ -24,10 +32,10 @@
 	</div>
 
 	<div class="right">
-		<span class="logout SVGicon">
+		<span class="logout SVGicon" on:click={logout} on:keydown={logout}>
 			<Logout />
 		</span>
-		<span on:click={toggleSidebar} on:keydown={toggleSidebar} class="toggleSidebar SVGicon">
+		<span class="toggleSidebar SVGicon" on:click={toggleSidebar} on:keydown={toggleSidebar}>
 			<Menu />
 		</span>
 		<span class="colorMode SVGicon">
@@ -92,8 +100,8 @@
 		display: none;
 	}
 
-	:global(.medium .toggleSidebar,.small .toggleSidebar ) {
-		display:inline!important;
+	:global(.medium .toggleSidebar, .small .toggleSidebar) {
+		display: inline !important;
 	}
 
 	header .breadcrumb {

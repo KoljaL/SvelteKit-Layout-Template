@@ -48,13 +48,25 @@ if (!isset($request['password'])) {
 }
 
 if (isset($_GET['login'])) {
-  $response = [
-    'API' => true,
-    'data' => [
-      'databases' => login(),
-    ],
-  ];
+  if ($password === $request['password']) {
+    $response = [
+      'API' => true,
+      'data' => [
+        'login' => true,
+        'password' => $password,
+      ],
+    ];
+  } else {
+    $response = [
+      'API' => true,
+      'data' => [
+        'login' => false,
+      ],
+    ];
+  }
 }
+
+
 
 if (isset($_GET['getTables'])) {
   $response = [
@@ -1280,15 +1292,15 @@ function getDatabases() {
         .then(response => response.json())
         .then(data => {
           console.log(data)
-          if(data.message){
-      document.querySelector('#newTable').classList.toggle('open');
+          if (data.message) {
+            document.querySelector('#newTable').classList.toggle('open');
           }
         })
         .catch((error) => {
           console.error('Error:', error);
         });
 
-    } 
+    }
     /** 
      * 
      * ADD COLUMN

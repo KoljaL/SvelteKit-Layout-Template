@@ -33,6 +33,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@macfja/svelte-persistent-store": "^2.2.1",
 		"svelte-simple-modal": "^1.4.1"
 	}
 }

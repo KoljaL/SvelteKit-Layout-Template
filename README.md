@@ -17,3 +17,9 @@ still learning Svelte stuff...
 ## used libraries
 - https://github.com/andrelmlins/svelte-grid-responsive
 - https://github.com/flekschas/svelte-simple-modal
+- https://github.com/MacFJA/svelte-persistent-store
+
+
+## usefull links
+- https://geoffrich.net/posts/svelte-$-meanings/
+

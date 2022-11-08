@@ -2,41 +2,29 @@
 	import Login from '../lib/layout/modals/Login.svelte';
 	import { writable } from 'svelte/store';
 	import Modal, { bind } from 'svelte-simple-modal';
-	let errorMsg: string = '';
+	import { confObj } from '$lib/functions/stores';
+ 
 
 	const loginModal = writable(null);
-	const showLogin = () => {
-		loginModal.set(bind(Login, { title: 'Login', text: errorMsg, callbackFCN }));
-	};
 
-	const callbackFCN = (password: string) => { 
-		fetch('http://localhost:9999/API?login', {
-			method: 'POST',
-			// mode: 'same-origin',
-			mode: 'cors',
-			// credentials: 'same-origin',
-			headers: {
-				'Content-Type': 'application/json',
-				  'Access-Control-Allow-Origin':'*',
-				Accept: 'application/json'
-			},
-			body: JSON.stringify({
-				password: password
-			})
-		})
-			.then((response) => response.json())
-			.then((data) => {
-				console.log(data);
-			});
+	if ($confObj.get('password') === '') {
+		loginModal.set(bind(Login, { callbackFCN }));
+	}else{
+		getDatabases()
+	}
 
-		if (password === '123') {
+	function callbackFCN(){
 			loginModal.set(null);
-		} else {
-			errorMsg = 'wrong password';
-			showLogin();
-		}
+		getDatabases()
 	};
-	showLogin();
+
+	function getDatabases(){
+		// console.log('getDatabases')
+	}
+
+
+	$: console.info('confObj',$confObj);
+	$: console.info('ConfigHolder',window.localStorage.getItem('ConfigHolder'));
 </script>
 
 <!-- LOGIN MODAL -->
