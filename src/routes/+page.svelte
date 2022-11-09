@@ -3,28 +3,22 @@
 	import { writable } from 'svelte/store';
 	import Modal, { bind } from 'svelte-simple-modal';
 	import { confObj } from '$lib/functions/stores';
- 
-
+	import EmptyComponent from '$lib/layout/EmptyComponent.svelte';
+	export let ContentComponent = EmptyComponent;
 	const loginModal = writable(null);
 
 	if ($confObj.get('password') === '') {
 		loginModal.set(bind(Login, { callbackFCN }));
-	}else{
-		getDatabases()
 	}
 
-	function callbackFCN(){
-			loginModal.set(null);
-		getDatabases()
-	};
-
-	function getDatabases(){
-		// console.log('getDatabases')
+	function callbackFCN() {
+		loginModal.set(null);
 	}
 
 
-	$: console.info('confObj',$confObj);
-	$: console.info('ConfigHolder',window.localStorage.getItem('ConfigHolder'));
+	$: ContentComponent
+	$: console.info('%cconfObj', 'color:limegreen', $confObj);
+	$: console.info('%cconfObj', 'color:limegreen', window.localStorage.getItem('ConfigHolder'));
 </script>
 
 <!-- LOGIN MODAL -->
@@ -40,6 +34,7 @@
 <!-- PAGE CONTENT -->
 <div class="center">
 	<h2>a wonderfull Startpage :-)</h2>
+	<svelte:component this={ContentComponent} />
 </div>
 
 <style>

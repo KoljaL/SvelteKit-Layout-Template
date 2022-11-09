@@ -14,6 +14,7 @@
 		$confObj.erase();
 		$confObj = $confObj;
 		window.localStorage.removeItem('ConfigHolder');
+		location.reload()
 	}
 	
 </script>

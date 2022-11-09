@@ -7,48 +7,48 @@
   --sidebar-width: 200px;
 
   /* COLORS */
-  --bg-main: #1b1b1b;
-  --bg-header: #212121;
-  --bg-footer: #212121;
-  --bg-sidebar: rgb(52, 52, 52);
-  --blue: rgb(82, 139, 255);
-  --yellow: rgb(209, 154, 102);
-  --green: rgb(152, 195, 121);
-  --red: rgb(190, 80, 70);
-  --text-color: rgb(205, 205, 205);
+  --bg-main: hsl(0, 0%, 11%);
+  --bg-header: hsl(0, 0%, 13%);
+  --bg-footer: hsl(0, 0%, 13%);
+  --bg-sidebar: hsl(0, 0%, 20%);
+  --blue: hsl(220, 100%, 66%);
+  --yellow: hsl(29, 54%, 61%);
+  --green: hsl(95, 38%, 62%);
+  --red: hsl(5, 48%, 51%);
+  --text-color: hsl(0, 0%, 80%);
   --link-color: var(--blue);
-  --link-hover-color: rgb(94, 158, 255);
-  --border-color: #858585;
+  --link-hover-color: hsl(220, 100%, 68%);
+  --border-color: hsl(0, 0%, 52%);
 }
 
 [data-theme="light"] {
-  --bg-main: rgb(226, 226, 226);
-  --bg-header: rgb(212, 212, 212);
-  --bg-footer: rgb(212, 212, 212);
-  --bg-sidebar: rgb(206, 203, 203);
-  --blue: rgb(82, 139, 255);
-  --yellow: rgb(209, 154, 102);
-  --green: rgb(152, 195, 121);
-  --red: rgb(190, 80, 70);
-  --text-color: #1b1b1b;
-  --link-color: rgb(255 153 51/1);
-  --link-hover-color: rgb(255 204 102/1);
-  --border-color: rgb(173, 173, 173);
+  --bg-main: hsl(0, 0%, 89%);
+  --bg-header: hsl(0, 0%, 83%);
+  --bg-footer: hsl(0, 0%, 83%);
+  --bg-sidebar: hsl(0, 3%, 80%);
+  --blue: hsl(220, 80%, 56%);
+  --yellow: hsl(29, 54%, 51%);
+  --green: hsl(95, 38%, 52%);
+  --red: hsl(5, 48%, 41%);
+  --text-color: hsl(0, 0%, 11%);
+  --link-color: var(--blue);
+  --link-hover-color: hsl(40, 100%, 70%);
+  --border-color: hsl(0, 0%, 68%);
 }
 
 [data-theme="dark"] {
-  --bg-main: #1b1b1b;
-  --bg-header: #212121;
-  --bg-footer: #212121;
-  --bg-sidebar: rgb(52, 52, 52);
-  --blue: rgb(82, 139, 255);
-  --yellow: rgb(209, 154, 102);
-  --green: rgb(152, 195, 121);
-  --red: rgb(190, 80, 70);
-  --text-color: rgb(205, 205, 205);
+  --bg-main: hsl(0, 0%, 11%);
+  --bg-header: hsl(0, 0%, 13%);
+  --bg-footer: hsl(0, 0%, 13%);
+  --bg-sidebar: hsl(0, 0%, 20%);
+  --blue: hsl(220, 100%, 66%);
+  --yellow: hsl(29, 54%, 61%);
+  --green: hsl(95, 38%, 62%);
+  --red: hsl(5, 48%, 51%);
+  --text-color: hsl(0, 0%, 80%);
   --link-color: var(--blue);
-  --link-hover-color: rgb(94, 158, 255);
-  --border-color: #858585;
+  --link-hover-color: hsl(220, 100%, 68%);
+  --border-color: hsl(0, 0%, 52%);
 }
 
 
@@ -96,14 +96,15 @@ body {
   display: flex;
   flex-direction: column;
   max-width: var(--page-width);
-  margin-inline:auto;
+  margin-inline: auto;
   min-height: 100vh;
   color: var(--text-color);
   background-color: var(--bg-header);
-  position: relative!important;
+  position: relative !important;
 }
 
-body.small,body.medium{
+body.small,
+body.medium {
   max-width: 100vw;
 }
 
@@ -152,16 +153,26 @@ a:hover {
   filter: brightness(1.25);
 }
 
-details>summary {
+nav details{
+  cursor:pointer;
+}
+nav details>summary {
   list-style: none;
 }
 
-details>summary::-webkit-details-marker {
+nav details>summary::-webkit-details-marker {
   display: none;
 }
 
 nav ul {
   padding-left: 0;
+}
+
+nav h2,
+nav h3,
+nav h4 {
+  margin-bottom: 0;
+  border-bottom: 1px solid var(--border-color);
 }
 
 li {
@@ -181,7 +192,7 @@ fieldset {
 
 fieldset legend {
   font-size: 1.2rem;
-    color: var(--text-color);
+  color: var(--text-color);
 }
 
 form ul {
@@ -281,6 +292,7 @@ form ul textarea {
   width: 100%;
   height: 100px;
 }
+
 button,
 form ul input[type='submit'],
 form ul input[type='button'] {
@@ -291,11 +303,13 @@ form ul input[type='button'] {
   border-radius: 0.3rem;
   cursor: pointer;
 }
+
 button.cancel,
 form ul input[type='submit'].cancel,
 form ul input[type='button'].cancel {
   background: var(--yellow);
 }
+
 button:hover,
 form ul input[type='submit']:hover,
 form ul input[type='button']:hover {

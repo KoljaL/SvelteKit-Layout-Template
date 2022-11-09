@@ -1,6 +1,6 @@
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
-				viewBox="2.757 3.149 493.825 493.719"
+				viewBox="0 0 500 500"
 			>
 				<path
 					id="Level_1"

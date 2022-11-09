@@ -25,11 +25,9 @@ export class ConfigHolder {
 	set (key,value) {
 		this[key] = value
     if(this.rememberme === ''){
-      console.log('rememberme')
-      console.log('ConfigHolder', window.localStorage.getItem('ConfigHolder'))
+      // console.log('rememberme')
       window.localStorage.removeItem('ConfigHolder')
-      console.log('ConfigHolder',window.localStorage.getItem('ConfigHolder'))
-
+      // console.log('ConfigHolder',window.localStorage.getItem('ConfigHolder'))
     }
 	}
 	get (key) {

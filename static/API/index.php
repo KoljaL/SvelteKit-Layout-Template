@@ -67,13 +67,17 @@ if (isset($_GET['login'])) {
 }
 
 
+if (isset($_GET['getDatabases'])) {
+  $response = [
+    'API' => true,
+    'databases' => getDatabases(),
+  ];
+}
 
 if (isset($_GET['getTables'])) {
   $response = [
     'API' => true,
-    'data' => [
       'tables' => getTables(),
-    ],
   ];
 }
 

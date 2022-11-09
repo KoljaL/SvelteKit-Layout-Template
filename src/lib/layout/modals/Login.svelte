@@ -7,9 +7,7 @@
 
 	export let callbackFCN = () => {};
 	let value: string = '123';
-	export let rememberme: boolean
-
-
+	export let rememberme: boolean;
 
 	function onSubmit() {
 		fetch('http://localhost:9999/API?login', {
@@ -28,11 +26,9 @@
 		})
 			.then((response) => response.json())
 			.then((data) => {
-				console.log(data);
 				if (data.data.login === true) {
 					$confObj.set('password', data.data.password);
 					$confObj.set('rememberme', rememberme || false);
-					// window.localStorage.setItem('rememberme', rememberme || false)
 					$confObj = $confObj;
 					// close();
 					callbackFCN();
