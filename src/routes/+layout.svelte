@@ -1,5 +1,5 @@
 <script lang="ts">
-// This can be false if you're using a fallback (i.e. SPA mode)
+	// This can be false if you're using a fallback (i.e. SPA mode)
 	export const prerender = false;
 	// styles
 	import '../style.css';
@@ -8,10 +8,13 @@
 	import Header from '../lib/layout/Header.svelte';
 	import Footer from '../lib/layout/Footer.svelte';
 	import Sidebar from '../lib/layout/Sidebar.svelte';
-
+	import EmptyComponent from '$lib/layout/EmptyComponent.svelte';
 	// Svelte stuff
 	import { fade } from 'svelte/transition';
 	import { onMount } from 'svelte';
+	  // import type { SvelteComponentTyped } from "svelte";
+
+	import { ContentComponent } from '$lib/functions/stores';
 
 	// add class to <body>
 	import watchMedia from '../lib/functions/matchMedia';
@@ -21,7 +24,9 @@
 		large: '(min-width: 650px)'
 	});
 	// has to be called, to write classNames in <body>
-	let mediaSize = $media.classNames; 
+	let mediaSize = $media.classNames;
+
+ 
 </script>
 
 <!-- ADD META INFORMATION TO HTML HEAD -->
@@ -34,7 +39,9 @@
 <main>
 	<Sidebar />
 	<article>
-		<slot />
+		<svelte:component this={$ContentComponent} />
+
+		<!-- <slot /> -->
 	</article>
 </main>
 
@@ -53,7 +60,7 @@
 		/* max-height: var(--main-height); */
 	}
 
-	article{
+	article {
 		width: 100%;
 	}
 </style>

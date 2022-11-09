@@ -3,8 +3,8 @@
 	// import { base } from '$app/paths';
 	// import { page } from '$app/stores';
 	// import { fade } from 'svelte/transition';
-
 	import { writable } from 'svelte/store';
+
 	import Modal, { bind } from 'svelte-simple-modal';
 	import Form from './modals/Form.svelte';
 	import Dialog from './modals/Dialog.svelte';
@@ -21,8 +21,11 @@
 
 	import DatabaseExplorer from './modals/DatabaseExplorer.svelte';
 
-	// import { confObj } from '$lib/functions/stores';
-	// $: DBExplorer = $confObj.get('password') !== '' ? DatabaseExplorer : (null as unknown as typeof DatabaseExplorer); 
+	let ContentComponent: any = null;
+	function handleChange(ev: any) {
+		ContentComponent = ev.detail.state;
+		console.log(ev);
+	}
 </script>
 
 <Modal show={$modal} styleWindow={{ backgroundColor: 'transparent', 'max-width': 'max-content' }} />
@@ -34,8 +37,7 @@
 		<li><a href="/#" on:click={showDialog}>Dialog</a></li>
 	</ul>
 
-	<DatabaseExplorer />
-	<!-- <svelte:component this={DBExplorer} /> -->
+	<DatabaseExplorer on:change={handleChange} />
 </nav>
 
 <style>

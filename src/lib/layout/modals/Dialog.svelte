@@ -7,8 +7,6 @@
 
 	const { close } = getContext('simple-modal');
 
-	// let onChange = () => {};
-
 	function _onCancel() {
 		onCancel();
 		close();

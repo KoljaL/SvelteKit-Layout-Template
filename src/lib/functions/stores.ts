@@ -4,7 +4,12 @@ import { persist, persistBrowserSession, createSessionStorage, createLocalStorag
 // MODALS
 export const openFormModal = writable(false)
 export const openDialogModal = writable(false)
- 
+
+// ContentComponent
+export const ContentComponent = writable()
+export const TableRows = writable()
+
+
 
 
 export class ConfigHolder {

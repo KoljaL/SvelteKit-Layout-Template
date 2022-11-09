@@ -22,13 +22,11 @@ $request = json_decode(trim(file_get_contents("php://input")), true);
 $response = [
   'API' => false,
   'message' => '',
-  'data' => [
-    'database' => '',
-    'table' => '',
-    'rows' => '',
-    'key' => '',
-    'value' => '',
-  ]
+  'database' => '',
+  'table' => '',
+  'rows' => '',
+  'key' => '',
+  'value' => '',
 ];
 
 /////////////// ROUTES ////////////////
@@ -77,7 +75,7 @@ if (isset($_GET['getDatabases'])) {
 if (isset($_GET['getTables'])) {
   $response = [
     'API' => true,
-      'tables' => getTables(),
+    'tables' => getTables(),
   ];
 }
 
@@ -85,9 +83,7 @@ if (isset($_GET['getTables'])) {
 if (isset($_GET['getRows'])) {
   $response = [
     'API' => true,
-    'data' => [
-      'rows' => getRows(),
-    ],
+    'rows' => getRows(),
   ];
 }
 
@@ -1198,12 +1194,8 @@ function getDatabases() {
     }
 
 
-    /**
-     * 
-     * ONLOAD
-     * 
-     */
-    window.addEventListener('load', async () => {
+    /*       *       *     AD
+     *       *      window.addEventListener('load', async () => {
       // if password is saved in localstorage, login directly
       if (window.localStorage.getItem('DBEPW')) {
         await login()
@@ -1220,23 +1212,15 @@ function getDatabases() {
       }
     })
 
-    /**
-     * 
-     * TEST FUNKTION
-     * 
-     */
-    function testFunction() {
+    /*       *       *      FUNKTION
+     *       *      function testFunction() {
 
     }
 
 
 
-    /**
-     * 
-     * CLOSE NEW ROW DIALOG
-     * 
-     */
-    function toggleNewRow() {
+    /*       *       *     E NEW ROW DIALOG
+     *       *      function toggleNewRow() {
       document.querySelector('#newRow').classList.toggle('open');
     }
 
@@ -1249,12 +1233,8 @@ function getDatabases() {
     }
 
 
-    /**
-     * 
-     * SAVE NEW TABLE
-     * 
-     */
-    function saveNewTable(event) {
+    /*       *       *      NEW TABLE
+     *       *      function saveNewTable(event) {
       event.preventDefault()
 
       let table = document.querySelector('#newTableTable')
@@ -1305,12 +1285,8 @@ function getDatabases() {
         });
 
     }
-    /** 
-     * 
-     * ADD COLUMN
-     * 
-     */
-    function addColumn() {
+    /*        *       *     COLUMN
+     *       *      function addColumn() {
       let table = document.querySelector('#newTableTable')
       let i = table.children.length
       let cells = `<td><input type="text" name="name"></td>
@@ -1328,12 +1304,8 @@ function getDatabases() {
     }
 
 
-    /**
-     * 
-     * DELETE ROW
-     * 
-     */
-    async function deleteRow(event) {
+    /*       *       *     TE ROW
+     *       *      async function deleteRow(event) {
       if (event.target.tagName === 'TD' && event.target.className === 'deleteRow') {
         // load confirm with callback
         let rowID = event.target.dataset.id
@@ -1368,12 +1340,8 @@ function getDatabases() {
     }
 
 
-    /**
-     * 
-     * CONFIRM
-     * 
-     */
-    async function confirm(callback, text) {
+    /*       *       *     IRM
+     *       *      async function confirm(callback, text) {
       document.getElementById('confirmBox').classList.add('open')
       document.getElementById('confirmText').innerHTML = arguments[2]
       document.getElementById('confirmBox').addEventListener('click', async (el) => {
@@ -1393,12 +1361,8 @@ function getDatabases() {
 
 
 
-    /**
-     * 
-     * UPDATE VALUE ON ENTER KEY
-     * 
-     */
-    function updateValueOnEnter(event) {
+    /*       *       *     TE VALUE ON ENTER KEY
+     *       *      function updateValueOnEnter(event) {
       console.log("updateValueOnEnter", event.key)
 
       if (event.key === 'Enter') {
@@ -1426,12 +1390,8 @@ function getDatabases() {
 
     }
 
-    /**
-     * 
-     * UPDATE VALUE
-     * 
-     */
-    function updateValue(event) {
+    /*       *       *     TE VALUE
+     *       *      function updateValue(event) {
       fetch('admin.php?updateValue', {
         method: 'POST',
         mode: "same-origin",
@@ -1473,12 +1433,8 @@ function getDatabases() {
 
 
 
-    /**
-     * 
-     * SAVE NEW DATABASE
-     * 
-     */
-    function saveNewDatabase(event) {
+    /*       *       *      NEW DATABASE
+     *       *      function saveNewDatabase(event) {
       event.preventDefault()
       let databaseName = document.querySelector('form.saveNewDatabase')[0].value
       // console.log(databaseName)
@@ -1514,12 +1470,8 @@ function getDatabases() {
 
 
 
-    /**
-     * 
-     * SAVE NEW ROW
-     * 
-     */
-    function saveNewRow(event) {
+    /*       *       *      NEW ROW
+     *       *      function saveNewRow(event) {
       event.preventDefault()
       let form = document.querySelector('form.saveNewRow')
       // console.log(form)
@@ -1563,12 +1515,8 @@ function getDatabases() {
 
 
 
-    /**
-     * 
-     * GET TABLE CONTENT
-     * 
-     */
-    async function getRows(event) {
+    /*       *       *     TABLE CONTENT
+     *       *      async function getRows(event) {
 
       // by click on link
       if (event.type === 'click' && event.target.className === 'getRows') {
@@ -1616,12 +1564,8 @@ function getDatabases() {
         });
     }
 
-    /**
-     * 
-     * GET TABLE INFO 
-     * 
-     */
-    function getTableInfo(event) {
+    /*       *       *     TABLE INFO 
+     *       *      function getTableInfo(event) {
       if (event.type === 'click' && event.target.classList.contains('getTableInfo')) {
         DBobject.table = event.target.dataset.table
         // DBobject.database = event.target.dataset.database 
@@ -1663,12 +1607,8 @@ function getDatabases() {
 
 
 
-    /**
-     * 
-     * GET DATABASE TABLES
-     * 
-     */
-    async function getTables(event) {
+    /*       *       *     DATABASE TABLES
+     *       *      async function getTables(event) {
       let info = false;
       if (event.type === 'click' && event.target.className === 'getTables') {
         event.preventDefault()
@@ -1739,12 +1679,8 @@ function getDatabases() {
 
 
 
-    /**
-     * 
-     * LOGIN 
-     * 
-     */
-    async function login(event = '') {
+    /*       *       *     N 
+     *       *      async function login(event = '') {
 
       if (event !== '') {
         event.preventDefault()
@@ -1788,12 +1724,8 @@ function getDatabases() {
     }
 
 
-    /**
-     * 
-     * REFRESH
-     * 
-     */
-    function refresh() {
+    /*       *       *     ESH
+     *       *      function refresh() {
       // console.log('refresh: ', DBobject)
 
       // DEBUG element
@@ -1870,12 +1802,8 @@ function getDatabases() {
 
 
 
-    /**
-     * 
-     * MAKE INPUT FIELDS EDITABLE
-     * 
-     */
-    function makeEditable(event) {
+    /*       *       *      INPUT FIELDS EDITABLE
+     *       *      function makeEditable(event) {
       // console.log('makeEditable', event)
       if (event.target.tagName === 'TD' && event.target.className !== 'deleteRow') {
         event.preventDefault()
@@ -1888,12 +1816,8 @@ function getDatabases() {
       }
     }
 
-    /**
-     * 
-     * SET FOCUS ON CLICKED CELL
-     * 
-     */
-    function setFocusOnCell(event) {
+    /*       *       *     FOCUS ON CLICKED CELL
+     *       *      function setFocusOnCell(event) {
       // console.log('setFocusOnCell', event.target)
       if (event.target.tagName === 'TD' && event.target.className !== 'deleteRow') {
         event.preventDefault()
@@ -1955,12 +1879,8 @@ function getDatabases() {
     }
 
 
-    /**
-     * 
-     * MAKE TABLE
-     * 
-     */
-    // https://jsfiddle.net/rh5aoxsL/
+    /*       *       *      TABLE
+     *       *      // https://jsfiddle.net/rh5aoxsL/
     function makeTable(data, tableInfo = false) {
       // console.log('makeTable', data)
       // create table
@@ -1982,12 +1902,8 @@ function getDatabases() {
 
 
 
-      /**
-       * 
-       * MAKE NEW ROW DIALOG
-       * 
-       */
-      function makeNewRow(data) {
+                                  NEW ROW DIALOG
+                          function makeNewRow(data) {
         document.querySelector('#newRow form').innerHTML = '';
 
         const objKeys = Object.keys(data[0]);

@@ -1,9 +1,14 @@
 <script lang="ts">
-	import { confObj } from '$lib/functions/stores';
+	import { confObj,ContentComponent, TableRows } from '$lib/functions/stores';
 	import DataTable from '../DataTable.svelte';
 	import EmptyComponent from '../EmptyComponent.svelte';
-	export let ContentComponent = EmptyComponent;
-	$: ContentComponent;
+
+  	 
+ 
+	function changeState(child:any) {
+    $ContentComponent = child
+  }
+
 
 	let databases: Promise<any> | undefined = undefined;
 	$: if ($confObj.get('password') !== '') {
@@ -19,6 +24,13 @@
 		tables = undefined;
 	}
 
+	let rows: Promise<any> | undefined = undefined;
+	$: if ($confObj.get('table') !== '') {
+		getTables($confObj.get('table'));
+	} else {
+		rows = undefined;
+	}
+
 	async function getDatabases() {
 		const body = {
 			password: $confObj.get('password')
@@ -31,7 +43,7 @@
 
 	async function getTables(database: string) {
 		$confObj.set('database', database);
-		$confObj = $confObj;
+		// $confObj = $confObj;
 		const body = {
 			password: $confObj.get('password'),
 			database: $confObj.get('database')
@@ -44,16 +56,17 @@
 
 	async function getRows(table: string) {
 		$confObj.set('table', table);
-		$confObj = $confObj;
+		// $confObj = $confObj;
 		const body = {
 			password: $confObj.get('password'),
 			database: $confObj.get('database'),
 			table: $confObj.get('table')
 		};
 		let result = await myFetch('getRows', body);
-		if (result.databases) {
-			ContentComponent = DataTable
-			return result.databases;
+		if (result.rows) {
+			$TableRows = result.rows
+			$ContentComponent = DataTable;
+			// return result.tables;
 		}
 	}
 
@@ -84,13 +97,14 @@
 				console.error('Error:', error);
 			});
 	}
-	// $: tables = (($confObj.get('database') !== ''))? $confObj.get('database') : undefined;
 	$: $confObj = $confObj;
 </script>
 
+<button on:click={() => changeState(DataTable)}>DataTable</button>
+
+<button on:click={() => changeState(EmptyComponent)}>EmptyComponent</button>
+
 {#await databases then databases}
-	<!-- <span>Loading data...</span> -->
-	<!-- <p>{JSON.stringify(databases)}</p> -->
 	{#if databases !== undefined}
 		<h2>DB-Explorer</h2>
 		<details open>
@@ -106,10 +120,7 @@
 	{/if}
 {/await}
 
-{#await tables}
-	<!-- <span>Loading data...</span> -->
-{:then tables}
-	<!-- <p>{JSON.stringify(tables)}</p> -->
+{#await tables then tables}
 	{#if tables !== undefined}
 		<details open>
 			<summary><h3>Table</h3></summary>

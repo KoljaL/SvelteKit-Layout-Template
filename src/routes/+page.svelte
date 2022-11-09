@@ -4,7 +4,7 @@
 	import Modal, { bind } from 'svelte-simple-modal';
 	import { confObj } from '$lib/functions/stores';
 	import EmptyComponent from '$lib/layout/EmptyComponent.svelte';
-	export let ContentComponent = EmptyComponent;
+ 
 	const loginModal = writable(null);
 
 	if ($confObj.get('password') === '') {
@@ -16,7 +16,6 @@
 	}
 
 
-	$: ContentComponent
 	$: console.info('%cconfObj', 'color:limegreen', $confObj);
 	$: console.info('%cconfObj', 'color:limegreen', window.localStorage.getItem('ConfigHolder'));
 </script>
@@ -34,7 +33,6 @@
 <!-- PAGE CONTENT -->
 <div class="center">
 	<h2>a wonderfull Startpage :-)</h2>
-	<svelte:component this={ContentComponent} />
 </div>
 
 <style>
