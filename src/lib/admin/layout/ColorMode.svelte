@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
-	import darkCode from './css/DarkCode.css';
-	import lightCode from './css/LightCode.css';
+	import darkCode from '$lib/layout/css/DarkCode.css';
+	import lightCode from '$lib/layout/css/LightCode.css';
 
 	/**
 	 *

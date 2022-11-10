@@ -1,4 +1,5 @@
-import { writable as internal, get, type Writable } from 'svelte/store'
+import { Writable } from 'svelte/store'
+import { writable as internal, get } from 'svelte/store'
 
 declare type Updater<T> = (value: T) => T
 declare type StoreDict<T> = { [key: string]: Writable<T> }
@@ -6,13 +7,15 @@ declare type StoreDict<T> = { [key: string]: Writable<T> }
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const stores: StoreDict<any> = {}
 
-export function writable<T> (key: string, initialValue: T): Writable<T> {
+export function writableLocal<T> (key: string, initialValue: T): Writable<T> {
 	const browser = typeof localStorage != 'undefined'
 
 	function updateStorage (key: string, value: T) {
 		if (!browser) return
 
-		localStorage.setItem(key, JSON.stringify(value))
+		if (window.localStorage.getItem('rememberme') && window.localStorage.getItem('rememberme') === 'true') {
+			localStorage.setItem(key, JSON.stringify(value))
+		}
 	}
 
 	if (!stores[key]) {
@@ -27,9 +30,7 @@ export function writable<T> (key: string, initialValue: T): Writable<T> {
 				const handleStorage = (event: StorageEvent) => {
 					if (event.key === key) set(event.newValue ? JSON.parse(event.newValue) : null)
 				}
-
 				window.addEventListener('storage', handleStorage)
-
 				return () => window.removeEventListener('storage', handleStorage)
 			}
 		})
@@ -43,7 +44,6 @@ export function writable<T> (key: string, initialValue: T): Writable<T> {
 			},
 			update (updater: Updater<T>) {
 				const value = updater(get(store))
-
 				updateStorage(key, value)
 				set(value)
 			},

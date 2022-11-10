@@ -1,6 +1,6 @@
-import { writable } from './local-storage-store'
+import { writableLocal } from './writableLocal'
 
-export const preferences = writable('preferences', {
+export const preferences = writableLocal('preferences', {
 	theme: 'dark',
 	pane: '50%'
 })

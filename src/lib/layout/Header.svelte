@@ -1,126 +1,63 @@
-<script lang="ts">
-	import ColorMode from './ColorMode.svelte';
-	// import { conf } from '$lib/envStore';
-	import Logo from './svg/dbLogo.svelte';
-	import Logout from './svg/logout.svelte';
-	import Menu from './svg/menu.svelte';
-	import { confObj } from '$lib/functions/stores';
-
-	function toggleSidebar() {
-		document.body.classList.toggle('noSidebar');
+<script>
+	function toggleTheme() {
+		document.body.classList.toggle('latex-dark');
 	}
-
-	function logout() {
-		$confObj.erase();
-		$confObj = $confObj;
-		window.localStorage.removeItem('ConfigHolder');
-		location.reload()
-	}
-	
 </script>
 
-<header>
-	<div class="left">
-		<div class="logo">
-			<Logo />
-		</div>
-		<div class="pagename">DB Editor</div>
-	</div>
-	<div class="breadcrumb">
-		<span class="showDatabase" />
-		<span class="showTable" />
-		<span class="showInfo" />
-	</div>
-
-	<div class="right">
-		<span class="logout SVGicon" on:click={logout} on:keydown={logout}>
-			<Logout />
-		</span>
-		<span class="toggleSidebar SVGicon" on:click={toggleSidebar} on:keydown={toggleSidebar}>
-			<Menu />
-		</span>
-		<span class="colorMode SVGicon">
-			<ColorMode />
-		</span>
-	</div>
-</header>
+<nav class="header">
+	<h1><span class="latex">L<span>a</span>T<span>e</span>X</span>.css</h1>
+	<ul class="header__links">
+		<li class="header__links_item">
+			<a href="/" class="header__links__item__link">Home</a>
+		</li>
+		<li class="header__links_item">
+			<a href="/admin" class="header__links__item__link">Admin</a>
+		</li>
+		<li class="header__links_item">
+			<a href="/#" class="header__links__item__link" on:click|preventDefault={toggleTheme}>Dark</a>
+		</li>
+	</ul>
+</nav>
 
 <style>
-	header .left {
+	.header {
+		height: 6rem;
 		display: flex;
+		justify-content: space-between;
 		flex-direction: row;
-		align-items: end;
-	}
-	header .logo {
-		cursor: pointer;
-		width: calc(var(--header-height) - 10px);
-		height: calc(var(--header-height) - 10px);
-		margin-top: 5px;
-		margin-bottom: 5px;
 	}
 
-	header .pagename {
+	.header__title {
 		margin-left: 1rem;
-		padding-bottom: 0.5rem;
-		font-size: 2rem;
+		color: var(--main-color);
+		text-decoration: none;
+		font-weight: bold;
+		font-size: 1.5rem;
+		line-height: 6.2rem;
 	}
 
-	header {
-		flex-shrink: 0;
-		height: var(--header-height);
-		background-color: var(--bg-header);
-		padding-inline: 1rem;
+	.header__links {
 		display: flex;
 		flex-direction: row;
 		align-items: center;
-		justify-content: space-between;
+		list-style: none;
 	}
 
-	header .SVGicon {
-		width: 24px;
-		height: 24px;
-		stroke: var(--text-color);
-		fill: var(--text-color);
-		cursor: pointer;
+	.header__links_item {
+		margin-left: 1rem;
 	}
 
-	header .SVGicon:hover {
-		stroke: var(--blue);
-		fill: var(--blue);
+	.header__links_item:last-child {
+		margin-right: 1rem;
 	}
 
-	header .right {
-		display: flex;
-		flex-direction: row;
-		align-items: end;
-		gap: 1rem;
-		height: 24px;
+	.header__links__item__link {
+		padding-bottom: 0.2rem;
+		color: var(--secondary-color);
+		text-decoration: none;
 	}
 
-	.toggleSidebar {
-		display: none;
-	}
-
-	:global(.medium .toggleSidebar, .small .toggleSidebar) {
-		display: inline !important;
-	}
-
-	header .breadcrumb {
-		min-width: max-content;
-		align-self: end;
-		margin-bottom: 3px;
-	}
-
-	header .showDatabase {
-		color: var(--blue);
-	}
-
-	header .showTable {
-		color: var(--green);
-		padding-left: 1rem;
-	}
-
-	header .showInfo {
-		color: var(--text-color);
+	.header__links__item__link:hover {
+		border-bottom: 1.5px solid var(--secondary-color);
 	}
 </style>
