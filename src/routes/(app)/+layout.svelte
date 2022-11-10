@@ -11,10 +11,11 @@
 
 <header>
 	<div class="left">
-		<div class="pagename"><span class="latex">L<span>a</span>T<span>e</span>X</span>.css</div>
+		<div class="pagename"><span class="latex">L<span>a</span>S<span>a</span>R</span></div>
 	</div>
 	<div class="right">
 		<a href="/">Home</a>
+		<a href="/text">Text</a>
 		<a href="/admin">Admin</a>
 		<a href="/#" on:click|preventDefault={toggleTheme}>Dark</a>
 	</div>
@@ -52,6 +53,7 @@
 		flex-direction: row;
 		align-items: center;
 		justify-content: space-between;
+		border-bottom: 1px solid var(--kbd-border-color);
 	}
 	header .left {
 		display: flex;
@@ -99,6 +101,7 @@
 		align-items: center;
 		justify-content: space-between;
 		padding-inline: 1rem;
+		border-top: 1px solid var(--kbd-border-color);
 	}
 
 	a {

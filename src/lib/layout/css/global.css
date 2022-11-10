@@ -78,7 +78,7 @@
 
   --page-width: 90vw;
   --page-radius: .3rem;
-  --header-height: 50px;
+  --header-height: 60px;
   --footer-height: 30px;
   --main-height: calc(100vh - var(--header-height) - var(--footer-height));
   --sidebar-width: 200px;
@@ -91,7 +91,7 @@
   --pre-bg-color: hsl(210, 28%, 93%);
   --kbd-bg-color: hsl(210, 5%, 100%);
   --kbd-border-color: hsl(210, 5%, 70%);
-  --table-border-color: black;
+  --table-border-color: hsl(210, 5%, 50%);
   --sidenote-target-border-color: hsl(55, 55%, 70%);
   --footnotes-border-color: hsl(0, 0%, 39%);
 }
@@ -104,7 +104,7 @@
   --pre-bg-color: hsl(0, 1%, 25%);
   --kbd-bg-color: hsl(0, 0%, 16%);
   --kbd-border-color: hsl(210, 5%, 70%);
-  --table-border-color: white;
+  --table-border-color: hsl(210, 5%, 50%);
   --sidenote-target-border-color: hsl(0, 0%, 59%);
   --footnotes-border-color: hsl(0, 0%, 59%);
   --proof-symbol-filter: invert(80%);
@@ -160,7 +160,7 @@ body {
   line-height: 1.8;
   font-size: 18px;
   max-width: 95vw;
-  width: 100ch;
+  width: 90ch;
   min-height: 100vh;
   overflow-x: hidden;
   margin: 0 auto;
@@ -240,7 +240,7 @@ kbd {
 }
 
 pre {
-  padding: 1rem 1.4rem;
+  padding: .5rem 1rem;
   max-width: 100%;
   overflow: auto;
   border-radius: 4px;
@@ -255,9 +255,15 @@ pre code {
 kbd {
   background: var(--kbd-bg-color);
   border: 1px solid var(--kbd-border-color);
-  border-radius: 2px;
+  border-radius: 5px;
+  padding: 3px 4px 2px 4px;
   padding: 2px 4px;
   font-size: 75%;
+}
+
+blockquote {
+  padding-left: .25rem;
+  border-left: 2px solid var(--kbd-border-color);
 }
 
 /* Better tables */
@@ -351,7 +357,8 @@ nav li:before {
 
 /* Center definitions (most useful for display equations) */
 dl dd {
-  text-align: center;
+  margin-left: 1rem;
+  /* text-align: center; */
 }
 
 /* Theorem */
@@ -529,6 +536,7 @@ input.sidenote-toggle {
 
 .footnotes {
   border-top: 1px solid var(--footnotes-border-color);
+  margin-bottom: 2rem;
 }
 
 /* Center title and paragraph */
@@ -563,6 +571,10 @@ input.sidenote-toggle {
   margin-left: -0.1667em;
   margin-right: -0.125em;
   line-height: 1ex;
+  /* ADDED */
+  font-size: 0.75em;
+  /* vertical-align: 0.28em; */
+
 }
 
 /* Heading typography */
@@ -576,6 +588,7 @@ h2 {
   font-size: 1.7rem;
   line-height: 2rem;
   margin-top: 3rem;
+  border-bottom: 1px solid var(--kbd-border-color);
 }
 
 h3 {

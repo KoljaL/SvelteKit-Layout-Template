@@ -20,7 +20,7 @@
 	</p>
 </div>
 
-<nav role="navigation" class="toc">
+<nav class="toc">
 	<h2>Contents</h2>
 	<ol>
 		<li><a href="#getting-started">Getting Started</a></li>
@@ -191,12 +191,8 @@
 		<p>You can also add a dark mode toggle to your site by adding a button and a tiny bit of JavaScript:</p>
 		<pre><code class="language-html">&lt;button id="dark-mode-toggle"&gt;Toggle dark mode&lt;/button&gt;</code></pre>
 
-		<p>Like this: <button id="dark-mode-toggle">Toggle dark mode</button></p>
-
 		<h2 id="alternative-typeface">Alternative Typeface</h2>
 		<p><span class="latex">L<span>a</span>T<span>e</span>X</span>.css uses Latin Modern by default. If you don't like this typeface (hard to read, too thin, etc.), you can switch to the <a href="https://github.com/alerque/libertinus"><code>Libertinus</code></a> font family by adding a class of <code>libertinus</code> to the <code class="language-html">&lt;body&gt;</code> tag. Click the button below to switch between Latin Modern and Libertinus.</p>
-
-		<button id="typeface-toggle">Current typeface: <span id="typeface">Latin Modern</span></button>
 
 		<h2 id="html-elements">HTML Elements</h2>
 		<p>
