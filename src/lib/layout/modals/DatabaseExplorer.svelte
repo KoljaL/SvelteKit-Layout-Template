@@ -1,14 +1,11 @@
 <script lang="ts">
-	import { confObj,ContentComponent, TableRows } from '$lib/functions/stores';
+	import { confObj, ContentComponent, TableRows } from '$lib/functions/stores';
 	import DataTable from '../DataTable.svelte';
 	import EmptyComponent from '../EmptyComponent.svelte';
 
-  	 
- 
-	function changeState(child:any) {
-    $ContentComponent = child
-  }
-
+	function changeState(child: any) {
+		$ContentComponent = child;
+	}
 
 	let databases: Promise<any> | undefined = undefined;
 	$: if ($confObj.get('password') !== '') {
@@ -64,7 +61,7 @@
 		};
 		let result = await myFetch('getRows', body);
 		if (result.rows) {
-			$TableRows = result.rows
+			$TableRows = result.rows;
 			$ContentComponent = DataTable;
 			// return result.tables;
 		}

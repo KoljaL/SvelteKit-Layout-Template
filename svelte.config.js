@@ -4,10 +4,8 @@ import preprocess from 'svelte-preprocess'
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-	// Consult https://github.com/sveltejs/svelte-preprocess
-	// for more information about preprocessors
+	// Consult https://github.com/sveltejs/svelte-preprocess for more information about preprocessors
 	preprocess: preprocess(),
-
 	kit: {
 		adapter: adapter({
 			pages: 'build',
@@ -16,7 +14,11 @@ const config = {
 			precompress: false,
 			strict: true
 		}),
-		prerender: { entries: [] }
+		prerender: { entries: [] },
+		alias: {
+			$admin: './src/lib/admin',
+			'$admin/*': './src/lib/admin/*'
+		}
 	}
 }
 

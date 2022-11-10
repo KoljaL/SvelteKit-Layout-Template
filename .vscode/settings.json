@@ -1,0 +1,19 @@
+{
+  "files.exclude": {
+    "**/.vscode": true,
+    "**/node_modules": true,
+    "**/build": true,
+    "**/tests": true,
+    "**/.svelte-kit": true,
+    "**/.gitignore": true,
+    "**/.npmrc": true,
+    "**/.prettierignore": true,
+    "**/.eslintignore": true,
+    "**/.eslintrc.cjs": true,
+    "**/.prettierrc": true,
+    "**/package-lock.json": true,
+    "**/playwright.config.ts": true,
+    "**/vite.config.ts": true,
+    "**/tsconfig.json": true
+  }
+}

@@ -5,6 +5,9 @@
 
 	import { confObj } from '$lib/functions/stores';
 
+	// import { get } from 'svelte/store';
+	import { preferences } from '$admin/functions/stores';
+
 	export let callbackFCN = () => {};
 	let value: string = '123';
 	export let rememberme: boolean;
@@ -60,6 +63,7 @@
 			<li>
 				<input type="submit" on:click|preventDefault={onSubmit} value="Okay" />
 				<span class="error">{errorMsg}</span>
+				{$preferences.theme}
 			</li>
 		</ul>
 	</form>
