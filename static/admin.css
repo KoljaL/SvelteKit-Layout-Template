@@ -153,9 +153,10 @@ a:hover {
   filter: brightness(1.25);
 }
 
-nav details{
-  cursor:pointer;
+nav details {
+  cursor: pointer;
 }
+
 nav details>summary {
   list-style: none;
 }

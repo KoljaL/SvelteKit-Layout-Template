@@ -2,7 +2,9 @@
 	// This can be false if you're using a fallback (i.e. SPA mode)
 	export const prerender = false;
 	// styles
-	import '$admin/layout/css/admin.css';
+	// import '$admin/layout/css/admin.css';
+	// import adminCSS from '$admin/layout/css/admin.css';
+
 	// page layouts
 	import Meta from '$admin/layout/Meta.svelte';
 	import Header from '$admin/layout/Header.svelte';
@@ -25,10 +27,26 @@
 
 	// $: console.info('%cconfObj', 'color:limegreen', $confObj);
 	// $: console.info('%cconfObj', 'color:limegreen', window.localStorage.getItem('ConfigHolder'));
+	const adminCSS = document.querySelector('head #adminCSS') as HTMLButtonElement | null;
+	const appCSS = document.querySelector('head #appCSS') as HTMLButtonElement | null;
+
+	if (adminCSS != null) {
+		adminCSS.disabled = false;
+	}
+	if (appCSS != null) {
+		appCSS.disabled = true;
+	}
 </script>
 
 <!-- ADD META INFORMATION TO HTML HEAD -->
 <Meta meta />
+
+<!-- // https://stackoverflow.com/questions/65998542/how-should-i-use-svelte-reactivity-with-dom-getelementbyid -->
+
+<!-- <svelte:head>
+	<title>Sub</title>
+	{@html `<` + `style>${adminCSS}</style>`}
+</svelte:head> -->
 
 <!-- PAGE HEADER -->
 <Header />

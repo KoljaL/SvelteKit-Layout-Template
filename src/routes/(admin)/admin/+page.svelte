@@ -18,7 +18,7 @@
 </script>
 
 <!-- LOGIN MODAL -->
-<Modal show={$loginModal} closeOnEsc={false} closeOnOuterClick={false} closeButton={false} styleWindow={{ backgroundColor: 'transparent', 'max-width': 'max-content' }} styleBg={{ background: 'rgba(0, 0, 0, 0.95)' }} />
+<!-- <Modal show={$loginModal} closeOnEsc={false} closeOnOuterClick={false} closeButton={false} styleWindow={{ backgroundColor: 'transparent', 'max-width': 'max-content' }} styleBg={{ background: 'rgba(0, 0, 0, 0.95)' }} /> -->
 
 <!-- PAGE CONTENT -->
 <div class="center">
