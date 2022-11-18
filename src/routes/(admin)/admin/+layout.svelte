@@ -2,8 +2,15 @@
 	// This can be false if you're using a fallback (i.e. SPA mode)
 	export const prerender = false;
 	// styles
-	// import '$admin/layout/css/admin.css';
-	// import adminCSS from '$admin/layout/css/admin.css';
+	const adminCSS = document.querySelector('head #adminCSS') as HTMLButtonElement | null;
+	const appCSS = document.querySelector('head #appCSS') as HTMLButtonElement | null;
+
+	if (adminCSS != null) {
+		adminCSS.disabled = false;
+	}
+	if (appCSS != null) {
+		appCSS.disabled = true;
+	}
 
 	// page layouts
 	import Meta from '$admin/layout/Meta.svelte';
@@ -13,7 +20,6 @@
 	// Svelte stuff
 	import { fade } from 'svelte/transition';
 	import { onMount } from 'svelte';
-	// import type { SvelteComponentTyped } from "svelte";
 
 	// add class to <body>
 	import watchMedia from '$lib/functions/matchMedia';
@@ -27,26 +33,10 @@
 
 	// $: console.info('%cconfObj', 'color:limegreen', $confObj);
 	// $: console.info('%cconfObj', 'color:limegreen', window.localStorage.getItem('ConfigHolder'));
-	const adminCSS = document.querySelector('head #adminCSS') as HTMLButtonElement | null;
-	const appCSS = document.querySelector('head #appCSS') as HTMLButtonElement | null;
-
-	if (adminCSS != null) {
-		adminCSS.disabled = false;
-	}
-	if (appCSS != null) {
-		appCSS.disabled = true;
-	}
 </script>
 
 <!-- ADD META INFORMATION TO HTML HEAD -->
 <Meta meta />
-
-<!-- // https://stackoverflow.com/questions/65998542/how-should-i-use-svelte-reactivity-with-dom-getelementbyid -->
-
-<!-- <svelte:head>
-	<title>Sub</title>
-	{@html `<` + `style>${adminCSS}</style>`}
-</svelte:head> -->
 
 <!-- PAGE HEADER -->
 <Header />
@@ -70,10 +60,13 @@
 		flex-direction: row;
 		border: 1px solid var(--border-color);
 		border-radius: var(--page-radius);
-		/* max-height: var(--main-height); */
+		max-height: var(--main-height);
+		overflow: hidden;
 	}
 
 	article {
 		width: 100%;
+		max-height: var(--main-height);
+		overflow: scroll;
 	}
 </style>

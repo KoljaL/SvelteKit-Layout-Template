@@ -14,16 +14,16 @@
 		//
 		// first check if colorMode isset in localStorage
 		//
-		if (window.localStorage.getItem('WDW_colorMode')) {
-			document.documentElement.setAttribute('data-theme', window.localStorage.getItem('WDW_colorMode') || '');
-			switchToTheme = window.localStorage.getItem('WDW_colorMode')!;
+		if (window.localStorage.getItem('PRFX_colorMode')) {
+			document.documentElement.setAttribute('data-theme', window.localStorage.getItem('PRFX_colorMode') || '');
+			switchToTheme = window.localStorage.getItem('PRFX_colorMode')!;
 		}
 		//
 		// second check if color-scheme isset in browser
 		//
 		else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
 			document.documentElement.setAttribute('data-theme', 'dark');
-			window.localStorage.setItem('WDW_colorMode', 'dark');
+			window.localStorage.setItem('PRFX_colorMode', 'dark');
 			switchToTheme = 'dark';
 		}
 		//
@@ -31,7 +31,7 @@
 		//
 		else {
 			document.documentElement.setAttribute('data-theme', switchToTheme);
-			window.localStorage.setItem('WDW_colorMode', switchToTheme);
+			window.localStorage.setItem('PRFX_colorMode', switchToTheme);
 		}
 	}
 
@@ -43,7 +43,7 @@
 	function colorMode() {
 		switchToTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
 		document.documentElement.setAttribute('data-theme', switchToTheme);
-		window.localStorage.setItem('WDW_colorMode', switchToTheme);
+		window.localStorage.setItem('PRFX_colorMode', switchToTheme);
 	}
 
 	// make switchToTheme reactive

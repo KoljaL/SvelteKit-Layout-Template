@@ -6,6 +6,8 @@
   --main-height: calc(100vh - var(--header-height) - var(--footer-height));
   --sidebar-width: 200px;
 
+
+
   /* COLORS */
   --bg-main: hsl(0, 0%, 11%);
   --bg-header: hsl(0, 0%, 13%);
@@ -50,6 +52,19 @@
   --link-hover-color: hsl(220, 100%, 68%);
   --border-color: hsl(0, 0%, 52%);
 }
+
+
+
+
+/* color: #A6ACCD;
+  color: #676E95;
+  color: #F07178;
+  color: #F78C6C;
+  color: #82AAFF;
+  color: #89DDFF;
+  color: #FFCB6B;
+  color: #C3E88D;
+  color: #C792EA; */
 
 
 @font-face {

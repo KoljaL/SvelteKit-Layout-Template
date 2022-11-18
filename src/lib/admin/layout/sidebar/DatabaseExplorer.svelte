@@ -1,67 +1,70 @@
 <script lang="ts">
-	import { confObj, ContentComponent, TableRows } from '$lib/functions/stores';
+	// import { ContentComponent, TableRows } from '$lib/functions/stores';
+	import { SvelteComponentTyped } from 'svelte';
+
 	import DataTable from '../DataTable.svelte';
 	import EmptyComponent from '../EmptyComponent.svelte';
+	import { passwordST, databaseST, tableST, ContentComponent, TableRows } from '$admin/functions/stores';
 
 	function changeState(child: any) {
 		$ContentComponent = child;
 	}
 
 	let databases: Promise<any> | undefined = undefined;
-	$: if ($confObj.get('password') !== '') {
-		databases = getDatabases();
-	} else {
-		databases = undefined;
-	}
+	// $: if ($passwordST) {
+	// 	databases = getDatabases();
+	// } else {
+	// 	databases = undefined;
+	// }
 
 	let tables: Promise<any> | undefined = undefined;
-	$: if ($confObj.get('database') !== '') {
-		getTables($confObj.get('database'));
-	} else {
-		tables = undefined;
-	}
+	// $: if ($databaseST) {
+	// 	getTables($databaseST);
+	// } else {
+	// 	tables = undefined;
+	// }
 
 	let rows: Promise<any> | undefined = undefined;
-	$: if ($confObj.get('table') !== '') {
-		getTables($confObj.get('table'));
-	} else {
-		rows = undefined;
-	}
+	// $: if ($tableST) {
+	// 	getRows($tableST);
+	// } else {
+	// 	rows = undefined;
+	// }
 
 	async function getDatabases() {
 		const body = {
-			password: $confObj.get('password')
+			password: $passwordST
 		};
 		let result = await myFetch('getDatabases', body);
 		if (result.databases) {
-			return result.databases;
+			databases = result.databases;
 		}
 	}
 
 	async function getTables(database: string) {
-		$confObj.set('database', database);
-		// $confObj = $confObj;
+		databaseST.set(database);
 		const body = {
-			password: $confObj.get('password'),
-			database: $confObj.get('database')
+			password: $passwordST,
+			database: $databaseST
 		};
 		let result = await myFetch('getTables', body);
 		if (result.tables) {
 			tables = result.tables;
+			$ContentComponent = EmptyComponent;
 		}
 	}
 
 	async function getRows(table: string) {
-		$confObj.set('table', table);
-		// $confObj = $confObj;
+		tableST.set(table);
 		const body = {
-			password: $confObj.get('password'),
-			database: $confObj.get('database'),
-			table: $confObj.get('table')
+			password: $passwordST,
+			database: $databaseST,
+			table: $tableST
 		};
 		let result = await myFetch('getRows', body);
 		if (result.rows) {
 			$TableRows = result.rows;
+			console.log('$TableRows', $TableRows);
 			$ContentComponent = DataTable;
 			// return result.tables;
 		}
@@ -94,18 +97,23 @@
 				console.error('Error:', error);
 			});
 	}
-	$: $confObj = $confObj;
+	// $: $confObj = $confObj;
+	$: {
+		// console.log('contentComonent', $ContentComponent);
+		// console.log('databases', databases);
+	}
+	// $: databases = databases;
 </script>
 
-<button on:click={() => changeState(DataTable)}>DataTable</button>
+<!-- <button on:click|preventDefault={() => changeState(DataTable)}>DataTable</button>
+<button on:click|preventDefault={() => changeState(EmptyComponent)}>EmptyComponent</button> -->
 
-<button on:click={() => changeState(EmptyComponent)}>EmptyComponent</button>
+<h2 on:click={() => getDatabases()} on:keypress={() => getDatabases()}>DB-Explorer</h2>
 
 {#await databases then databases}
 	{#if databases !== undefined}
-		<h2>DB-Explorer</h2>
 		<details open>
-			<summary><h3>Databases</h3></summary>
+			<summary><h4>Databases</h4></summary>
 			<ul>
 				{#each databases as data}
 					<li>
@@ -120,7 +128,7 @@
 {#await tables then tables}
 	{#if tables !== undefined}
 		<details open>
-			<summary><h3>Table</h3></summary>
+			<summary><h4>Table</h4></summary>
 			<ul>
 				{#each tables as data}
 					<li>
@@ -133,4 +141,7 @@
 {/await}
 
 <style>
+	h2 {
+		cursor: pointer;
+	}
 </style>

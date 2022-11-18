@@ -65,6 +65,16 @@ if (isset($_GET['login'])) {
 }
 
 
+if ($password !== $request['password']) {
+  $response = [
+    'request' => $request,
+    'message' => 'wrong password',
+  ];
+  echo json_encode($response);
+  exit;
+}
+
+
 if (isset($_GET['getDatabases'])) {
   $response = [
     'API' => true,
@@ -372,5 +382,3 @@ function getDatabases() {
 
 
 ?>
-
- 

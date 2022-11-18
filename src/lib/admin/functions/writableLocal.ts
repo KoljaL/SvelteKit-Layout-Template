@@ -1,4 +1,4 @@
-import { Writable } from 'svelte/store'
+// import { Writable } from 'svelte/store'
 import { writable as internal, get } from 'svelte/store'
 
 declare type Updater<T> = (value: T) => T
@@ -13,13 +13,18 @@ export function writableLocal<T> (key: string, initialValue: T): Writable<T> {
 	function updateStorage (key: string, value: T) {
 		if (!browser) return
 
-		if (window.localStorage.getItem('rememberme') && window.localStorage.getItem('rememberme') === 'true') {
+		if (window.localStorage.getItem('PRFX_rememberme') && window.localStorage.getItem('PRFX_rememberme') === 'true') {
+			key = key.slice(0, 5) !== 'PRFX_' ? 'PRFX_' + key : key
+
 			localStorage.setItem(key, JSON.stringify(value))
 		}
 	}
 
 	if (!stores[key]) {
 		const store = internal(initialValue, set => {
+			if (key.slice(0, 5) !== 'PRFX_') {
+				key = 'PRFX_' + key
+			}
 			const json = browser ? localStorage.getItem(key) : null
 
 			if (json) {
@@ -39,10 +44,12 @@ export function writableLocal<T> (key: string, initialValue: T): Writable<T> {
 
 		stores[key] = {
 			set (value: T) {
+				// console.log('SET: ', key)
 				updateStorage(key, value)
 				set(value)
 			},
 			update (updater: Updater<T>) {
+				// console.log('UPDATE: ', key)
 				const value = updater(get(store))
 				updateStorage(key, value)
 				set(value)

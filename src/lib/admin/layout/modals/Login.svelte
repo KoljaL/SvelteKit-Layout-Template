@@ -2,28 +2,26 @@
 	// import { getContext } from 'svelte';
 	// const { close } = getContext('simple-modal');
 	// TODO close has no type https://github.com/flekschas/svelte-simple-modal/issues/88
-
-	import { confObj } from '$lib/functions/stores';
-
+	// import { confObj } from '$lib/functions/stores';
+	// import { onMount } from 'svelte';
 	// import { get } from 'svelte/store';
-	// import { preferences } from '$admin/functions/stores';
-	// preferences.set({
-	// 	theme: 'red',
-	// 	pane: '50%'
-	// });
-	// {$preferences.theme}
 
-	export let callbackFCN = () => {};
-	let value: string = '123';
-	export let rememberme: boolean;
-	export let again: string = '';
+	export let loggedIn = () => {};
 
-	if (window.localStorage.getItem('rememberme') && window.localStorage.getItem('rememberme') === 'true') {
-		rememberme = true;
-		again = ' again';
-	} else {
-		rememberme = false;
+	import { passwordST, remembermeST } from '$admin/functions/stores';
+	// export let rememberme: boolean;
+	// rememberme = $remembermeST == 'true' ? true : false;
+	let value: string = $passwordST || '1234';
+	value = value.replace(/^"|"$/g, '');
+	let again: string = $remembermeST ? 'again' : '';
+
+	if ($passwordST) {
+		// console.log($passwordST);
+		// console.log(passwordST);
+		console.log(value);
+		onSubmit();
 	}
+
 	function onSubmit() {
 		fetch('http://localhost:9999/API?login', {
 			method: 'POST',
@@ -42,22 +40,26 @@
 			.then((response) => response.json())
 			.then((data) => {
 				if (data.data.login === true) {
-					if (rememberme) {
-						window.localStorage.setItem('rememberme', 'true');
+					// console.log(value);
+					if ($remembermeST) {
+						window.localStorage.setItem('PRFX_rememberme', 'true');
 					} else {
-						window.localStorage.setItem('rememberme', 'false');
+						window.localStorage.setItem('PRFX_rememberme', 'false');
 					}
-					$confObj.set('password', data.data.password);
-					// $confObj.set('rememberme', rememberme || false);
-					$confObj = $confObj;
-					// close();
-					callbackFCN();
+					passwordST.set(value);
+					loggedIn();
 				} else {
 					errorMsg = 'wrong password';
 				}
 			});
 	}
 	$: errorMsg = '';
+
+	// DEBUG
+	// $: console.log($remembermeST);
+	// $: console.log($passwordST);
+	// $: console.log('PRFX_rememberme', window.localStorage.getItem('PRFX_rememberme'));
+	// $: console.log('PRFX_password', window.localStorage.getItem('PRFX_password'));
 </script>
 
 <fieldset>
@@ -66,13 +68,13 @@
 		<ul>
 			<li>
 				<label for="password">Password</label>
-				<input id="password" type="password" bind:value />
+				<input id="password" type="text" bind:value />
 			</li>
 			<li class="inline">
 				<label for="store">
 					remember me {again}
 					<span class="switch">
-						<input type="checkbox" name="store" id="store" bind:checked={rememberme} />
+						<input type="checkbox" name="store" id="store" bind:checked={$remembermeST} />
 						<span class="switchSlider" />
 					</span>
 				</label>

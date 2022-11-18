@@ -1,21 +1,36 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import ColorMode from './ColorMode.svelte';
-	// import { conf } from '$lib/envStore';
 	import Logo from './svg/dbLogo.svelte';
 	import Logout from './svg/logout.svelte';
+	import Home from './svg/home.svelte';
 	import Menu from './svg/menu.svelte';
-	import { confObj } from '$lib/functions/stores';
+	import { passwordST, remembermeST } from '$admin/functions/stores';
 
 	function toggleSidebar() {
 		document.body.classList.toggle('noSidebar');
 	}
 
 	function logout() {
-		$confObj.erase();
-		$confObj = $confObj;
-		window.localStorage.removeItem('ConfigHolder');
+		// empty stores
+		passwordST.set('');
+		remembermeST.set('');
+
+		// empty localStorage
+		let localItems = window.localStorage;
+		for (var key in localItems) {
+			if (localItems.hasOwnProperty(key)) {
+				// console.log(key.slice(0, 5));
+				if (key.slice(0, 5) === 'PRFX_') {
+					window.localStorage.removeItem(key);
+				}
+			}
+		}
 		// location.reload()
+		home();
+	}
+
+	function home() {
 		goto('/');
 	}
 </script>
@@ -34,6 +49,9 @@
 	</div>
 
 	<div class="right">
+		<span class="home SVGicon" on:click={home} on:keydown={home}>
+			<Home />
+		</span>
 		<span class="logout SVGicon" on:click={logout} on:keydown={logout}>
 			<Logout />
 		</span>

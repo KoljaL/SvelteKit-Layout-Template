@@ -2,14 +2,14 @@
 	import Login from '$admin/layout/modals/Login.svelte';
 	import { writable } from 'svelte/store';
 	import Modal, { bind } from 'svelte-simple-modal';
-	import { confObj } from '$lib/functions/stores';
+	import { passwordST, ContentComponent, TableRows } from '$admin/functions/stores';
 
 	const loginModal = writable(null);
-	if ($confObj.get('password') === '') {
-		loginModal.set(bind(Login, { callbackFCN }));
+	if (!$passwordST) {
+		loginModal.set(bind(Login, { loggedIn }));
 	}
 
-	function callbackFCN() {
+	function loggedIn() {
 		loginModal.set(null);
 	}
 
@@ -18,11 +18,16 @@
 </script>
 
 <!-- LOGIN MODAL -->
-<!-- <Modal show={$loginModal} closeOnEsc={false} closeOnOuterClick={false} closeButton={false} styleWindow={{ backgroundColor: 'transparent', 'max-width': 'max-content' }} styleBg={{ background: 'rgba(0, 0, 0, 0.95)' }} /> -->
+<Modal show={$loginModal} closeOnEsc={false} closeOnOuterClick={false} closeButton={false} styleWindow={{ backgroundColor: 'transparent', 'max-width': 'max-content' }} styleBg={{ background: 'rgba(0, 0, 0, 0.95)' }} />
 
 <!-- PAGE CONTENT -->
 <div class="center">
 	<h2>a wonderfull Startpage :-)</h2>
+
+	{#if $ContentComponent}
+		<!-- {$ContentComponent.name} -->
+		<svelte:component this={$ContentComponent} />
+	{/if}
 </div>
 
 <style>

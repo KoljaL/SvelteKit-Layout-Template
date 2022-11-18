@@ -4,12 +4,12 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "echo",
+      "label": "php localhost",
       "type": "shell",
-      "command": "echo Hello"
+      "command": "cd static && php -S localhost:9999"
     },
     {
-      "label": "start Svelte DEV",
+      "label": "npm run dev",
       "type": "shell",
       "command": "npm run dev"
     }

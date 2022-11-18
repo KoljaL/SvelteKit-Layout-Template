@@ -5,6 +5,9 @@ still learning Svelte stuff...
 
 ![screenshot](static/style/img/screenshot.png)
 
+npx depcruise src --include-only "^src" --config --output-type dot | dot -T svg > dependency-graph.svg
+
+npx depcruise src --include-only "^src" --config --output-type dot | dot -T svg | npx depcruise-wrap-stream-in-html  > dependency-graph.html
 
 ## Features
 

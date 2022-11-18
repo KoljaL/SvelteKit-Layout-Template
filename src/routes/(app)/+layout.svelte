@@ -2,12 +2,7 @@
 	// This can be false if you're using a fallback (i.e. SPA mode)
 	export const prerender = false;
 
-	// import '$lib/layout/css/latex.css';
-	// import appCSS from '$lib/layout/css/latex.css';
-
-	// document.querySelector('head #appCSS').disabled = false;
-	// document.querySelector('head #adminCSS').disabled = true;
-
+	// STYLE
 	const adminCSS = document.querySelector('head #adminCSS') as HTMLButtonElement | null;
 	const appCSS = document.querySelector('head #appCSS') as HTMLButtonElement | null;
 

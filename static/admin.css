@@ -82,7 +82,7 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
   box-sizing: border-box;
-  transition: all .5s;
+  /* transition: all .5s; */
 }
 
 html {

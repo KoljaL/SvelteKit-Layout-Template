@@ -10,8 +10,7 @@
 	import Dialog from './modals/Dialog.svelte';
 	const modal = writable(null);
 	const showForm = () => modal.set(bind(Form, { message: '' }));
-	const showDialog = () =>
-		modal.set(bind(Dialog, { title: 'Confirm', text: 'Delete row 3?', onCancel, onOkay }));
+	const showDialog = () => modal.set(bind(Dialog, { title: 'Confirm', text: 'Delete row 3?', onCancel, onOkay }));
 	const onCancel = () => {
 		console.log('cancel');
 	};
@@ -19,7 +18,7 @@
 		console.log('okay');
 	};
 
-	import DatabaseExplorer from './modals/DatabaseExplorer.svelte';
+	import DatabaseExplorer from './sidebar/DatabaseExplorer.svelte';
 
 	let ContentComponent: any = null;
 	function handleChange(ev: any) {
